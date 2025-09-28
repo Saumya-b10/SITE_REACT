@@ -10,14 +10,27 @@ const Tour360 = () => {
   const panoramaRef = useRef(null);
   const panoramaInstance = useRef(null);
 
+  const [googleLoaded, setGoogleLoaded] = useState(false);
+
+  // ✅ Check if Google Maps API has loaded
   useEffect(() => {
-    if (!window.google) {
-      console.error("Google Maps JS API not loaded!");
-      setError("Google Maps API not loaded.");
-      return;
+    if (window.google && window.google.maps) {
+      setGoogleLoaded(true);
+    } else {
+      const interval = setInterval(() => {
+        if (window.google && window.google.maps) {
+          setGoogleLoaded(true);
+          clearInterval(interval);
+        }
+      }, 500);
     }
-    loadPanorama(selectedMonastery);
-  }, [selectedMonastery]);
+  }, []);
+
+  useEffect(() => {
+    if (googleLoaded) {
+      loadPanorama(selectedMonastery);
+    }
+  }, [selectedMonastery, googleLoaded]);
 
   const loadPanorama = async (monastery) => {
     if (!monastery) return;
@@ -26,25 +39,19 @@ const Tour360 = () => {
 
     try {
       const address = `${monastery.name.replace(/ /g, "+")}+Sikkim`;
-      // Call your backend API
+
+      // Call your backend (should return { lat, lng, heading, pitch })
       const response = await fetch(
-        `http://localhost:8083/api/map/${address}?heading=0&pitch=0&fov=90`
+        `http://localhost:8082/api/map/${address}?heading=60&pitch=5&fov=90`
       );
       if (!response.ok) throw new Error("API call failed");
-      const streetViewUrl = await response.text();
-
-      const urlObj = new URL(streetViewUrl);
-      const loc = urlObj.searchParams.get("location").split(",");
-      const lat = parseFloat(loc[0]);
-      const lng = parseFloat(loc[1]);
-      const heading = parseInt(urlObj.searchParams.get("heading") || "0");
-      const pitch = parseInt(urlObj.searchParams.get("pitch") || "0");
+      const data = await response.json();
 
       panoramaInstance.current = new window.google.maps.StreetViewPanorama(
         panoramaRef.current,
         {
-          position: { lat, lng },
-          pov: { heading, pitch },
+          position: { lat: data.lat, lng: data.lng },
+          pov: { heading: data.heading, pitch: data.pitch },
           zoom: 1,
         }
       );
@@ -59,9 +66,6 @@ const Tour360 = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
-  
-
-      {/* Main Content */}
       <main className="pt-24 container mx-auto px-4">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
           Monastery 360° Virtual Tour

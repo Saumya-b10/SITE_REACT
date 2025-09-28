@@ -7,6 +7,7 @@ import DiscoverSection from "../components/DiscoverSection";
 import NewsSetler from "../components/NewsSetler";
 
 const Home = () => {
+ 
   return (
     <div>
       <MainBanner />

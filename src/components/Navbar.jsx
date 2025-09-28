@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = ({ setMenuOpen, menuOpen }) => {
   const navigate = useNavigate();
