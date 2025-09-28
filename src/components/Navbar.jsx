@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
-import { useAuth } from "../context/AuthContext";
 
 const Navbar = ({ setMenuOpen, menuOpen }) => {
   const navigate = useNavigate();
@@ -43,52 +42,58 @@ const Navbar = ({ setMenuOpen, menuOpen }) => {
           </NavLink>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex justify-between items-center space-x-6 gap-10  font-medium">
+          <ul className="hidden md:flex justify-between items-center space-x-6 gap-10">
             <div className="flex space-x-6">
               <li>
+                {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/"
-                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Home
                 </NavLink>
               </li>
               <li>
+                {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/monasteries"
-                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Monasteries
                 </NavLink>
               </li>
               <li>
+                {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/community"
-                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Community
                 </NavLink>
               </li>
               <li>
+                {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/ar"
-                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   AR
                 </NavLink>
               </li>
               <li>
+                {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/360tour"
-                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   360Tour
                 </NavLink>
               </li>
               <li>
+                {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/booking"
-                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Booking
                 </NavLink>
@@ -130,49 +135,55 @@ const Navbar = ({ setMenuOpen, menuOpen }) => {
           <ul className="md:hidden flex flex-col space-y-4 p-4 bg-white dark:bg-gray-900 shadow-lg transition-colors">
             <div className="space-y-4">
               <li>
+                 {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/"
-                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Home
                 </NavLink>
               </li>
               <li>
+                 {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/monasteries"
-                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Monasteries
                 </NavLink>
               </li>
               <li>
+                 {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/community"
-                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Community
                 </NavLink>
               </li>
               <li>
+                 {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/ar"
-                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   AR
                 </NavLink>
               </li>
               <li>
+                 {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/360tour"
-                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   360Tour
                 </NavLink>
               </li>
               <li>
+                 {/* MODIFIED: Added font-bold and text color */}
                 <NavLink
                   to="/booking"
-                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                  className="font-bold text-[#5D4037] dark:text-[#D7CCC8]"
                 >
                   Booking
                 </NavLink>
@@ -189,7 +200,7 @@ const Navbar = ({ setMenuOpen, menuOpen }) => {
                   <MdLightMode className="h-5 w-5 text-[#0D80F2]" />
                 )}
               </button>
-              <button className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]">
+              <button className="font-bold text-[#5D4037] dark:text-[#D7CCC8]">
                 Login
               </button>
             </div>
