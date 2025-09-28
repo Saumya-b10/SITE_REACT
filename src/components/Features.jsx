@@ -4,7 +4,8 @@ import { features } from "../assets/assests";
 const Features = () => {
   return (
     <section className="py-16 px-6 bg-gray-50 dark:bg-gray-900">
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-gray-100">
+      {/* MODIFIED: Reverted back to a standard h2 tag */}
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-10 text-[#5D4037] dark:text-[#D7CCC8]">
         Monastery360 Features
       </h2>
 
