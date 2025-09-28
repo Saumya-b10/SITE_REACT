@@ -15,10 +15,12 @@ const MainBanner = () => {
 
           {/* Content */}
           <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-lg">
+            {/* THIS LINE IS CHANGED */}
+            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
               Discover Sikkim
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-gray-700 dark:text-gray-300 drop-shadow-md">
+            {/* THIS LINE IS CHANGED */}
+            <p className="mt-4 text-lg md:text-xl text-white drop-shadow-md">
               The Land of Mystical Monasteries
             </p>
           </div>
