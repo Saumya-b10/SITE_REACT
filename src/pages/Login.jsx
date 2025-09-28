@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+// Step 1: Import useAuth to access the context
+import { useAuth } from "../context/AuthContext"; // <-- Adjust path if needed
 
 const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  // Step 2: Get email, password, and their setters from the context
+  const { email, setEmail, password, setPassword } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // This will now work correctly
     console.log("Email:", email, "Password:", password);
   };
 
@@ -21,8 +24,8 @@ const Login = () => {
           className="w-full bg-transparent border my-3 border-gray-300 dark:border-gray-600 outline-none rounded-full py-2.5 px-4 focus:ring-2 focus:ring-primary dark:focus:ring-primary"
           type="email"
           placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={email} // This now refers to the context state
+          onChange={(e) => setEmail(e.target.value)} // This now updates the context state
           required
         />
         <input
@@ -30,8 +33,8 @@ const Login = () => {
           className="w-full bg-transparent border mt-1 border-gray-300 dark:border-gray-600 outline-none rounded-full py-2.5 px-4 focus:ring-2 focus:ring-primary dark:focus:ring-primary"
           type="password"
           placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={password} // This now refers to the context state
+          onChange={(e) => setPassword(e.target.value)} // This now updates the context state
           required
         />
         <div className="text-right py-4">
