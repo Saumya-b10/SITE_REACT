@@ -1,48 +1,116 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { MdDarkMode } from "react-icons/md";
+import { MdLightMode } from "react-icons/md";
 
 const Navbar = ({ setMenuOpen, menuOpen }) => {
+  const navigate = useNavigate();
+  const [theme, setTheme] = useState("light");
+
+  const handleThemeToggle = () => {
+    setTheme(theme == "light" ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const systemPerferDark = window.matchMedia(
+      "(prefers-color-scheme:dark)"
+    ).matches;
+
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (systemPerferDark) {
+      setTheme("dark");
+    }
+  }, []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <div>
       <header>
-        <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+        <nav className="flex items-center justify-between px-8 py-4 bg-white dark:bg-gray-900 shadow-md transition-colors">
           <NavLink to="/" className="flex items-center space-x-2">
             <img src="/monologo.jpeg" alt="Monasteries" className="h-10 w-10" />
-            <h1 className="text-xl font-bold">Monastery360</h1>
+            <h1 className="text-xl font-bold text-[#5D4037] dark:text-[#D7CCC8]">
+              Monastery360
+            </h1>
           </NavLink>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6 font-medium">
-            <li>
-              <NavLink to="/" className="hover:text-blue-600">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/monasteries" className="hover:text-blue-600">
-                Monasteries
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/community" className="hover:text-blue-600">
-                Community
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/ar" className="hover:text-blue-600">
-                AR
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/360tour" className="hover:text-blue-600">
-                360Tour
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/booking" className="hover:text-blue-600">
-                Booking
-              </NavLink>
-            </li>
+          <ul className="hidden md:flex justify-between items-center space-x-6 gap-10  font-medium">
+            <div className="flex space-x-6">
+              <li>
+                <NavLink
+                  to="/"
+                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/monasteries"
+                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                >
+                  Monasteries
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/community"
+                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                >
+                  Community
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/ar"
+                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                >
+                  AR
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/360tour"
+                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                >
+                  360Tour
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/booking"
+                  className="hover:text-[#5D4037] dark:text-[#D7CCC8]"
+                >
+                  Booking
+                </NavLink>
+              </li>
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleThemeToggle}
+                className="flex cursor-pointer items-center gap-2 bg-[#E8EDF5] dark:bg-gray-800  px-2 py-1 rounded-lg transition-colors"
+              >
+                {theme === "dark" ? (
+                  <MdDarkMode className="h-5 w-5 text-[#2563eb]" />
+                ) : (
+                  <MdLightMode className="h-5 w-5 text-[#0D80F2]" />
+                )}
+              </button>
+              <button
+                onClick={() => navigate("/login")}
+                className="cursor-pointer bg-primary font-bold rounded-md  text-white px-3 py-2 dark:text-[#D7CCC8]"
+              >
+                Login
+              </button>
+            </div>
           </ul>
 
           {/* Hamburger Button */}
@@ -50,33 +118,80 @@ const Navbar = ({ setMenuOpen, menuOpen }) => {
             className="md:hidden flex flex-col space-y-1"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span className="w-6 h-0.5 bg-black"></span>
-            <span className="w-6 h-0.5 bg-black"></span>
-            <span className="w-6 h-0.5 bg-black"></span>
+            <span className="w-6 h-0.5 bg-black dark:bg-white"></span>
+            <span className="w-6 h-0.5 bg-black dark:bg-white"></span>
+            <span className="w-6 h-0.5 bg-black dark:bg-white"></span>
           </button>
         </nav>
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <ul className="md:hidden flex flex-col space-y-4 p-4 bg-white shadow-lg">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/monasteries">Monasteries</a>
-            </li>
-            <li>
-              <a href="/community">Community</a>
-            </li>
-            <li>
-              <a href="/ar">AR</a>
-            </li>
-            <li>
-              <a href="/360tour">360Tour</a>
-            </li>
-            <li>
-              <a href="/booking">Booking</a>
-            </li>
+          <ul className="md:hidden flex flex-col space-y-4 p-4 bg-white dark:bg-gray-900 shadow-lg transition-colors">
+            <div className="space-y-4">
+              <li>
+                <NavLink
+                  to="/"
+                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/monasteries"
+                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                >
+                  Monasteries
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/community"
+                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                >
+                  Community
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/ar"
+                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                >
+                  AR
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/360tour"
+                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                >
+                  360Tour
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/booking"
+                  className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]"
+                >
+                  Booking
+                </NavLink>
+              </li>
+            </div>
+            <div onClick={() => navigate("/login")}>
+              <button
+                onClick={handleThemeToggle}
+                className="flex cursor-pointer items-center gap-2 bg-[#E8EDF5] dark:bg-gray-800 p-2 rounded-lg transition-colors"
+              >
+                {theme === "dark" ? (
+                  <MdDarkMode className="h-5 w-5 text-[#2563eb]" />
+                ) : (
+                  <MdLightMode className="h-5 w-5 text-[#0D80F2]" />
+                )}
+              </button>
+              <button className="hover:text-[#5D4037] dark:hover:text-[#D7CCC8]">
+                Login
+              </button>
+            </div>
           </ul>
         )}
       </header>

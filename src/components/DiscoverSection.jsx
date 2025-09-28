@@ -3,22 +3,33 @@ import { monastery } from "../assets/assests";
 
 const DiscoverSection = () => {
   return (
-    <section className="py-16 px-6">
-      <h2 className="text-3xl font-bold text-center mb-10">Discover Sikkim</h2>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {monastery.map((card, i) => (
+    <section className="py-16 px-6 bg-gray-50 dark:bg-gray-900">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+        Monastery360 Features
+      </h2>
+
+      {/* Responsive grid: 1 column on mobile, 2 on desktop */}
+      <div className="grid gap-12 max-w-6xl mx-auto md:grid-cols-3">
+        {monastery.map((feature, index) => (
           <div
-            key={i}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:scale-105 transition"
+            key={index}
+            className="flex flex-col items-center md:items-start text-center md:text-left bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-700 p-6 hover:shadow-lg dark:hover:shadow-gray-600 transition"
           >
+            {/* Feature Image */}
             <img
-              src={card.img}
-              alt={card.title}
-              className="h-48 w-full object-cover"
+              src={feature.img}
+              alt={feature.title}
+              className="rounded-xl shadow-md w-full h-42 object-cover mb-4 hover:scale-105 transition-transform duration-300"
             />
-            <div className="p-4">
-              <h3 className="font-semibold text-lg">{card.title}</h3>
-              <p className="text-gray-600 text-sm">{card.desc}</p>
+
+            {/* Feature Text */}
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+                {feature.desc}
+              </p>
             </div>
           </div>
         ))}

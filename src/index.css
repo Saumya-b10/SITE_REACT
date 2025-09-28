@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+
+body {
+  font-family: 'Outfit', sans-serif;
+  
+}
+
+
+@theme {
+  --color-primary: #F36100;
+  /* --color-primary-dark: #90CDF4;
+  --color-button:#3972CC */
+}

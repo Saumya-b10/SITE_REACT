@@ -7,15 +7,12 @@ import DiscoverSection from "../components/DiscoverSection";
 import NewsSetler from "../components/NewsSetler";
 
 const Home = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div>
-      <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <MainBanner />
       <DiscoverSection />
       <Features />
       <NewsSetler />
-      <Footer />
     </div>
   );
 };
