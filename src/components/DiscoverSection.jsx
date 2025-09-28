@@ -4,11 +4,12 @@ import { monastery } from "../assets/assests";
 const DiscoverSection = () => {
   return (
     <section className="py-16 px-6 bg-gray-50 dark:bg-gray-900">
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+      {/* MODIFIED: Reverted back to a standard h2 tag */}
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-10 text-[#5D4037] dark:text-[#D7CCC8]">
         Monastery360 Features
       </h2>
 
-      {/* Responsive grid: 1 column on mobile, 2 on desktop */}
+      {/* Responsive grid: 1 column on mobile, 3 on desktop */}
       <div className="grid gap-12 max-w-6xl mx-auto md:grid-cols-3">
         {monastery.map((feature, index) => (
           <div
